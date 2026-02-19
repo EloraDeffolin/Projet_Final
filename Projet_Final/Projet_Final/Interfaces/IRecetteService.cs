@@ -4,7 +4,10 @@ namespace Projet_Final.Interfaces
 {
     public interface IRecetteService
     {
-        public List<Recette> Recette;
-            public Recette void AjouterRecette(Recette recette);
+       // public List<Recette> listeRecette();
+           public Recette AjouterRecette(Recette recette);
+
+        public void SupprimerRecette(Recette r);
+
     }
 }

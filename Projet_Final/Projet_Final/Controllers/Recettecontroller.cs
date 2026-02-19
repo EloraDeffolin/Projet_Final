@@ -1,20 +1,20 @@
 ﻿using System.Security.Cryptography.X509Certificates;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Projet_Final.Interfaces;
 using Projet_Final.Models;
+using Projet_Final.Service;
 
 
 namespace Projet_Final.Controllers
 {
     [Route("Accueil")]
-    public class Recettecontroller : Controller
+    public class RecetteController : Controller
     {
-        private readonly IRecetteService _recetteservice;
+        private readonly RecetteService _recetteservice;
 
-        public Recettecontroller(IRecetteService recetteservice)
+        public RecetteController(RecetteService recetteservice)
         {
             _recetteservice = recetteservice;
 
@@ -39,8 +39,9 @@ namespace Projet_Final.Controllers
             _recetteservice.AjouterRecette(recette);
 
 
+        }
 
-            [HttpPost("Recette")]
+           [HttpPost("Recette")]
             public IActionResult ModifierRecette (Recette recette)
             {
               
