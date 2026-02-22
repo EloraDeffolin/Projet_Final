@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des ingrédients - Harmonie Gourmande</title>
+    <link rel="icon" type="image/svg+xml" href="Images/favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&family=Pacifico&family=Parisienne&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo">
+                <a href="index.html"><img src="Images/logo.jpg" alt="Logo"></a>
+            </div>
+            <div class="site-title">
+                <h1>Harmonie Gourmande</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="creer.html">Créer Recette</a>
+        <a href="ingredients.html" class="active">Liste des ingrédients</a>
+    </nav>
+
+    <div class="container">
+        <h2>Liste des Ingrédients</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Catégorie</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Lait</td>
+                    <td>Produit Laitier</td>
+                    <td><button class="delete-btn">×</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Poulet</td>
+                    <td>Viande</td>
+                    <td><button class="delete-btn">×</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Tomate</td>
+                    <td>Légume</td>
+                    <td><button class="delete-btn">×</button></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Riz</td>
+                    <td>Céréale</td>
+                    <td><button class="delete-btn">×</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="btn-actions">
+            <a href="ajouter-ingredient.html" class="add-btn">Ajouter un produit</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contact">
+            <span>Pour nous contacter :</span><br>
+            <span>- Email : contact@harmoniegourmande.fr</span><br>
+            <span>- Téléphone : 01 02 03 04 05</span><br>
+            <p>Tous droits réservés Copyright © 2026 - harmoniegourmande.com</p>
+        </div>
+    </footer>
+</body>
+</html>

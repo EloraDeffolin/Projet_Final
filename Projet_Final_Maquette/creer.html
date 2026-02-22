@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une recette - Harmonie Gourmande</title>
+    <link rel="icon" type="image/svg+xml" href="Images/favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&family=Pacifico&family=Parisienne&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo">
+                <a href="index.html"><img src="Images/logo.jpg" alt="Logo"></a>
+            </div>
+            <div class="site-title">
+                <h1>Harmonie Gourmande</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="creer.html" class="active">Créer Recette</a>
+        <a href="ingredients.html">Liste des ingrédients</a>
+    </nav>
+
+    <div class="container">
+        <h2>Ajouter une Recette</h2>
+
+        <form>
+            <div class="form-group">
+                <label for="titre">Titre :</label>
+                <input type="text" id="titre" placeholder="Ex: Gâteau Merveilleux ..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description :</label>
+                <textarea id="description" rows="4" placeholder="Ex: Mélanger les ingrédients ..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="url-image">URL de l'image :</label>
+                <input type="url" id="url-image" placeholder="https://..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="instructions">Instructions :</label>
+                <textarea id="instructions" rows="6" placeholder="Ex: ajouter les ingrédients ..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Auteur :</label>
+                <input type="text" placeholder="Nom de l'auteur, ex: Jane Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label>Ingrédients (nom + quantité) :</label>
+                <div class="ingredient-row">
+                    <input type="text" placeholder="Ex: Chocolat noir" required>
+                    <input type="text" class="quantity" placeholder="200g" required>
+                </div>
+                <div class="ingredient-row">
+                    <input type="text" placeholder="Ex: Œufs" required>
+                    <input type="text" class="quantity" placeholder="3" required>
+                </div>
+            </div>
+            <button type="submit">Créer la recette</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="contact">
+            <span>Pour nous contacter :</span><br>
+            <span>- Email : contact@harmoniegourmande.fr</span><br>
+            <span>- Téléphone : 01 02 03 04 05</span><br>
+            <p>Tous droits réservés Copyright © 2026 - harmoniegourmande.com</p>
+        </div>
+    </footer>
+</body>
+</html>
