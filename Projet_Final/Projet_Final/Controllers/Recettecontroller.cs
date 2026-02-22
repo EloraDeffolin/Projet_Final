@@ -9,45 +9,65 @@ using Projet_Final.Service;
 
 namespace Projet_Final.Controllers
 {
-    [Route("Accueil")]
-    public class RecetteController : Controller
+    namespace Projet_Final.Controllers
     {
-        private readonly RecetteService _recetteservice;
-
-        public RecetteController(RecetteService recetteservice)
+        [Route("Accueil")]
+        public class RecetteController : Controller
         {
-            _recetteservice = recetteservice;
+            private readonly IRecetteService _recetteservice;
 
-        }
-        [HttpPost("Recette")]
-        public IActionResult SupprimerRecette(Recette recette)
-        {
-            if (!ModelState.IsValid)
+            public RecetteController(IRecetteService recetteservice)
             {
-                return View("Supprimer Recette", recette);
-            }
-            _recetteservice.SupprimerRecette(recette);
-
-        }
-        [HttpGet("Recette")]
-        public IActionResult AjouterRecette(Recette recette)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("Ajouter Recette", recette);
-            }
-            _recetteservice.AjouterRecette(recette);
-
-
-        }
-
-           [HttpPost("Recette")]
-            public IActionResult ModifierRecette (Recette recette)
-            {
-              
-
-
+                _recetteservice = recetteservice;
             }
 
+            [HttpPost("SupprimerRecette")]
+            public IActionResult SupprimerRecette(Recette recette)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("SupprimerRecette", recette);
+                }
+                _recetteservice.SupprimerRecette(recette);
+                return View();
+            }
+
+            [HttpGet("AjouterRecette")]
+            public IActionResult AjouterRecette()
+            {
+                return View();
+            }
+
+            [HttpPost("AjouterRecette")]
+            public IActionResult AjouterRecette(Recette recette)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("AjouterRecette", recette);
+                }
+                _recetteservice.AjouterRecette(recette);
+                return View();
+            }
+
+            [HttpGet("ModifierRecette")]
+            public IActionResult ModifierRecette(int id)
+            {
+                var recette = _recetteservice.RecupererRecetteParId(id);
+                if (recette == null)
+                    return NotFound();
+                return View(recette);
+            }
+
+            [HttpPost("ModifierRecette")]
+            public IActionResult ModifierRecette(Recette recette)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("ModifierRecette", recette);
+                }
+                _recetteservice.ModifierRecette(recette);
+                return View();
+            }
         }
     }
+}

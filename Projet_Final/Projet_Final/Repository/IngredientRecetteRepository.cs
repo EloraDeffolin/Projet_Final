@@ -2,6 +2,7 @@
 using Projet_Final.DBManager;
 using Projet_Final.Interfaces;
 using Projet_Final.Models;
+using System.Security.Cryptography.X509Certificates;
 
 
 
@@ -33,7 +34,7 @@ namespace Projet_Final.Repository
                  .ToList();
 
             return r;
-           
+
         }
 
         public List<IngredientRecette> Recupereringredientrecettebyrecetteid(int id_recette)
@@ -56,9 +57,9 @@ namespace Projet_Final.Repository
         {
             foreach (IngredientRecette rec in r)
             {
-              _context.Remove(rec);
+                _context.Remove(rec);
             }
-            
+
             _context.SaveChanges();
         }
 
@@ -66,6 +67,49 @@ namespace Projet_Final.Repository
         {
             return _context.RecettesIngredients.SingleOrDefault(r => r.Id == id);
         }
+        public IngredientRecette ModifierIngredientRecette(IngredientRecette ir)
+        {
+            _context.Update(ir);
+            return ir;
+        }
+        public List<IngredientRecette> RecupererAllIngredientRecette()
+        {
+            return _context.RecettesIngredients.ToList();
+        }
+        public List<IngredientRecette> RecupererAllIngredientRecettebyrecetteid(int id_recette)
+        {
+            return _context.RecettesIngredients.Where(r => r.Id_Recette == id_recette).ToList();
+        }
 
+        public List<IngredientRecette> RecupererRecette(int id_recette)
+        {
+            return _context.RecettesIngredients.Where(r => r.Id_Recette == id_recette).ToList();
+        }
+
+
+        Recette IIngredientRecetteRepository.ModifierRecette()
+        {
+            foreach (IngredientRecette rec in _context.RecettesIngredients)
+            {
+                _context.Update(rec);
+            }
+            return null;
+        }
+
+        Recette IIngredientRecetteRepository.RecupererRecetteId(int id)
+        {
+            return _context.RecettesIngredients.Where(r => r.Id_Recette == id).Select(r => r.Recette).FirstOrDefault();
+        }
+
+
+
+        void IIngredientRecetteRepository.SupprimerRecette(Recette r)
+        {
+            foreach (IngredientRecette rec in _context.RecettesIngredients.Where(r => r.Id_Recette ==r.Id))
+            {
+                _context.Remove(rec);
+            }
+            _context.SaveChanges();
+        }
     }
 }

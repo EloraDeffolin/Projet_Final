@@ -9,7 +9,8 @@ namespace Projet_Final.Interfaces
         public List<IngredientRecette> Recupereringredientrecettebyingredientid(int id_ingredient);
         public void SupprimerIngredientRecette(List<IngredientRecette> r);
         public IngredientRecette RecupererIngredientRecettebyid(int id);
-
-
+        Recette ModifierRecette();
+        Recette RecupererRecetteId(int id);
+        void SupprimerRecette(Recette r);
     }
 }
