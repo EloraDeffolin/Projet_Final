@@ -1,8 +1,40 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Accueil";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        <h2>Nos dernières Recettes</h2>
+        <div class="recipes-grid">
+            <a href="recette-detail.html?id=1" class="recipe-card-link">
+                <div class="recipe-card">
+                    <div class="image"
+                         style="background-image: url('https://images.unsplash.com/photo-1505252929202-c4f39cda4d49?w=600');">
+                    </div>
+                    <div class="description">
+                        <h3>Fondant au chocolat</h3>
+                        <small>Cœur coulant irrésistible – par Jane Doe</small>
+                    </div>
+                </div>
+            </a>
+            <a href="recette-detail.html?id=2" class="recipe-card-link">
+                <div class="recipe-card">
+                    <div class="image"
+                         style="background-image: url('https://images.unsplash.com/photo-1603128516044-61b91661cd14?q=80&w=600');">
+                    </div>
+                    <div class="description">
+                        <h3>Tarte aux pommes</h3>
+                        <small>Recette traditionnelle et croustillante - par Jane Doe</small>
+                    </div>
+                </div>
+            </a>
+            <a href="recette-detail.html?id=3" class="recipe-card-link">
+                <div class="recipe-card">
+                    <div class="image"
+                         style="background-image: url('https://plus.unsplash.com/premium_photo-1713840472081-5ee6c5b63536?q=80&w=600');">
+                    </div>
+                    <div class="description">
+                        <h3>Crème brûlée</h3>
+                        <small>Caramel croustillant et vanille intense - par Jane Doe</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+    

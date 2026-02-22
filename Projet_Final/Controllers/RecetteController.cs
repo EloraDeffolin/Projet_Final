@@ -11,7 +11,7 @@ namespace Projet_Final.Controllers
 {
     namespace Projet_Final.Controllers
     {
-        [Route("Accueil")]
+        [Route("Recette")]
         public class RecetteController : Controller
         {
             private readonly IRecetteService _recetteservice;
@@ -19,6 +19,10 @@ namespace Projet_Final.Controllers
             public RecetteController(IRecetteService recetteservice)
             {
                 _recetteservice = recetteservice;
+            }
+            public IActionResult Index()
+            {
+                return View();
             }
 
             [HttpPost("SupprimerRecette")]

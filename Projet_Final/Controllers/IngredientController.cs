@@ -4,6 +4,7 @@ using Projet_Final.Models;
 
 namespace Projet_Final.Controllers
 {
+    [Route("Ingredient")]
     public class IngredientController : Controller
     {
      private readonly IIngredientService _ingredientservice;
@@ -11,11 +12,18 @@ namespace Projet_Final.Controllers
         {
             _ingredientservice = ingredientservice;
         }
-        [HttpGet("AjouterIngredient")]
-        public IActionResult AjouterIngredient()
+
+        public IActionResult Index()
         {
             return View();
         }
+
+        [HttpGet("AjouterIngredient")]
+        public IActionResult AjouterIngredient()
+        {
+            return View("Views/Ingredient/Ajouter.cshtml");
+        }
+
         [HttpPost("AjouterIngredient")]
         public IActionResult AjouterIngredient(Ingredient ingredient)
         {
