@@ -1,0 +1,23 @@
+﻿@model Ingredient
+        <h2>Ajout d'un Ingrédient</h2>
+
+<form asp-action="AjouterIngredient" method="post">
+
+    <div>
+        <label>Nom Ingredient :</label>
+        <input asp-for="NomIngredient" />
+    </div>
+
+    <div>
+        <label>Categorie :</label>
+        <select>
+            @foreach(CategorieEnum categorie in Enum.GetValues (typeof(CategorieEnum)))
+            {
+                <option value=@categorie>@categorie</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit">Ajouter</button>
+
+</form>

@@ -28,9 +28,9 @@
     </header>
 
     <nav>
-        <a href="/" class="active">Accueil</a>
-        <a href="/AjouterRecette">Créer Recette</a>
-        <a href="ingredients.html">Liste des ingrédients</a>
+        <a asp-controller="Home" asp-action="Index" class="active">Accueil</a>
+        <a asp-controller="Recette" asp-action="AjouterRecette">Créer Recette</a>
+        <a asp-controller="Ingredient" asp-action="Index">Liste des ingrédients</a>
     </nav>
 
     <div class="container">

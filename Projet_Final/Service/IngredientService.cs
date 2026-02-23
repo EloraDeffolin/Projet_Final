@@ -1,4 +1,5 @@
-﻿using Projet_Final.Interfaces;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Projet_Final.Interfaces;
 using Projet_Final.Models;
 
 namespace Projet_Final.Service
@@ -20,5 +21,16 @@ namespace Projet_Final.Service
         {
           _ingredientrepository.SupprimerIngredient(id);
         }
+
+        public List<Ingredient> Ingredients()
+        {
+            return _ingredientrepository.GetAll();
+        }
+
+        public List<Ingredient> GetAllIngredient()
+        {
+            return _ingredientrepository.GetAll();
+        }
+
     }
 }

@@ -1,40 +1,55 @@
 ﻿@{
-    ViewData["Title"] = "Accueil";
+	ViewData["Title"] = "Accueil";
 }
-        <h2>Nos dernières Recettes</h2>
-        <div class="recipes-grid">
-            <a href="recette-detail.html?id=1" class="recipe-card-link">
-                <div class="recipe-card">
-                    <div class="image"
-                         style="background-image: url('https://images.unsplash.com/photo-1505252929202-c4f39cda4d49?w=600');">
-                    </div>
-                    <div class="description">
-                        <h3>Fondant au chocolat</h3>
-                        <small>Cœur coulant irrésistible – par Jane Doe</small>
-                    </div>
-                </div>
-            </a>
-            <a href="recette-detail.html?id=2" class="recipe-card-link">
-                <div class="recipe-card">
-                    <div class="image"
-                         style="background-image: url('https://images.unsplash.com/photo-1603128516044-61b91661cd14?q=80&w=600');">
-                    </div>
-                    <div class="description">
-                        <h3>Tarte aux pommes</h3>
-                        <small>Recette traditionnelle et croustillante - par Jane Doe</small>
-                    </div>
-                </div>
-            </a>
-            <a href="recette-detail.html?id=3" class="recipe-card-link">
-                <div class="recipe-card">
-                    <div class="image"
-                         style="background-image: url('https://plus.unsplash.com/premium_photo-1713840472081-5ee6c5b63536?q=80&w=600');">
-                    </div>
-                    <div class="description">
-                        <h3>Crème brûlée</h3>
-                        <small>Caramel croustillant et vanille intense - par Jane Doe</small>
-                    </div>
-                </div>
-            </a>
-        </div>
-    
+@{
+	ViewData["Title"] = "Accueil - Harmonie Gourmande";
+}
+@model List<Recette>
+
+<div class="home-hero">
+	<h1>Bienvenue chez Harmonie Gourmande</h1>
+	<p>Découvrez nos recettes gourmandes et partagez les vôtres !</p>
+</div>
+
+<h2>Nos dernières recettes</h2>
+
+@if (Model == null || !Model.Any())
+{
+	<div class="no-recipes">
+		<p>Aucune recette n'a encore été partagée... Soyez le premier ! 🍫🥧</p>
+	</div>
+}
+else
+{
+	<div class="recipes-grid">
+		@foreach (var recette in Model)
+		{
+			<a asp-controller="Recette"
+			   asp-action="AfficherDetailRecette"
+			   asp-route-id="@recette.ID"
+			   class="recipe-card-link">
+
+				<div class="recipe-card">
+					<div class="image"
+						 style="background-image: url('@(string.IsNullOrWhiteSpace(recette.UrlImage)
+															 	 ? "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=600"
+																		 	 : recette.UrlImage)');">
+			</div>
+			<div class="description">
+				<h3>@recette.TitreRecette</h3>
+				<small>Cœur coulant irrésistible – par @recette.AuteurRecette</small>
+				<!-- Variante plus réaliste : -->
+				<!-- <small>@recette.Description?.Substring(0, Math.Min(60, recette.Description?.Length ?? 0))...</small> -->
+			</div>
+		</div>
+	</a>
+		}
+	</div>
+
+	<!-- Optionnel : lien vers toutes les recettes -->
+	<div class="see-more">
+		<a asp-controller="Recette" asp-action="Index" class="btn-see-more">
+			Voir toutes les recettes →
+		</a>
+	</div>
+}

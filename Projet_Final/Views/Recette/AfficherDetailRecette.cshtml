@@ -1,10 +1,10 @@
-﻿
+﻿@model RecetteDetailDTO
         <div class="recipe-detail">
             <div class="recipe-content">
                 <div class="recipe-header">
                     <div class="recipe-title">
-                        <h1>Fondant au chocolat</h1>
-                        <p><strong>Créé par :</strong> Jane Doe</p>
+                        <h1>@Model.Recette.TitreRecette</h1>
+                        <p><strong>Créé par :</strong> @Model.Recette.AuteurRecette</p>
                     </div>
                     <div class="actions">
                         <button class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -13,29 +13,26 @@
                 </div>
                 <div class="recipe-img">
                     <div class="main-image">
-                        <img src="https://plus.unsplash.com/premium_photo-1723730413628-75facaaa6eef?q=80&w=600"
+                        <img src=@Model.Recette.UrlImage
                              alt="Fondant au chocolat cœur coulant">
                     </div>
                     <div class="info">
                         <h3>Liste des Ingrédients :</h3>
                         <ul>
-                            <li>100g de farine</li>
-                            <li>3 œufs</li>
-                            <li>50g de chocolat</li>
+                            @foreach(IngredientsDTO ingredients in Model.Ingredients){
+                            <li>@ingredients.Quantite @ingredients.TypeQuantite de @ingredients.Ingredient.NomIngredient</li>}
+                          
                         </ul>
                     </div>
                 </div>
             </div>
             <h3>Description :</h3>
             <p>
-                C'est un fondant au chocolat délicieux avec un cœur coulant irrésistible. Parfait pour les amateurs de
-                chocolat intense !
+                @Model.Recette.Description
             </p>
-            <h3>Instructions :</h3>
-            <ol>
-                <li>Faire fondre le chocolat avec le beurre.</li>
-                <li>Mélanger les œufs avec le sucre puis incorporer la farine.</li>
-                <li>Verser dans des ramequins et cuire 10-12 min à 200°C.</li>
-                <li>Déguster tiède avec une boule de glace vanille.</li>
-            </ol>
+            <h3>Instructions:</h3>
+            <p>
+                @Model.Recette.Instruction
+            </p>
+               
         </div>

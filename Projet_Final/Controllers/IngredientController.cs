@@ -4,45 +4,55 @@ using Projet_Final.Models;
 
 namespace Projet_Final.Controllers
 {
-    [Route("Ingredient")]
+
+
+
     public class IngredientController : Controller
     {
-     private readonly IIngredientService _ingredientservice;
+        private readonly IIngredientService _ingredientservice;
         public IngredientController(IIngredientService ingredientservice)
         {
             _ingredientservice = ingredientservice;
         }
 
-        public IActionResult Index()
+        public IActionResult Ajouter()
         {
             return View();
         }
 
-        [HttpGet("AjouterIngredient")]
-        public IActionResult AjouterIngredient()
+        public IActionResult Index()
         {
-            return View("Views/Ingredient/Ajouter.cshtml");
+            List<Ingredient> list = _ingredientservice.GetAllIngredient();
+            return View(list);
         }
 
-        [HttpPost("AjouterIngredient")]
+        [HttpGet]
+        public IActionResult AjouterIngredient()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult AjouterIngredient(Ingredient ingredient)
         {
             if (!ModelState.IsValid)
             {
-                return View("AjouterIngredient", ingredient);
+
+                return View(ingredient);
             }
             _ingredientservice.AjouterIngredient(ingredient);
-            return View(); ;
+            return RedirectToAction("Index");
         }
-         [HttpPost("SupprimerIngredient")]
-        public IActionResult SupprimerIngredient(Ingredient ingredient)
+
+        public IActionResult SupprimerIngredient(int id)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View("SupprimerIngredient", ingredient);
+                _ingredientservice.SupprimerIngredient(id);
             }
-            _ingredientservice.SupprimerIngredient(ingredient.Id);
-            return View(); ;
+
+            return RedirectToAction("Index");
         }
+
     }
 }

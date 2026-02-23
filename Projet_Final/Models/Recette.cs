@@ -8,25 +8,23 @@
         public string Instruction { get; set; }
         public string UrlImage { get; set; }
         public string AuteurRecette { get; set; }
-        public string Email {  get; set; }
-        public int Telephone { get; set; }
+
 
         public Recette() { }
 
-        public Recette(string titrerecette, string description, string instruction, string urlimage, string auteurrecette, string email, int telephone)
+        public Recette(string titrerecette, string description, string instruction, string urlimage, string auteurrecette)
         {
             TitreRecette = titrerecette;
             Description = description;
             Instruction = instruction;
             UrlImage = urlimage;
             AuteurRecette = auteurrecette;
-            Email = email;
-            Telephone = telephone;
+
         }
 
         public override string ToString()
         {
-            return $"{TitreRecette} {Description} {Instruction} {UrlImage} {AuteurRecette} {Email} {Telephone}";
+            return $"{TitreRecette} {Description} {Instruction} {UrlImage} {AuteurRecette}";
         }
 
 

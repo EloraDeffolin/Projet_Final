@@ -13,6 +13,10 @@ namespace Projet_Final.Repository
         {
             _context = context;
         }
+        public List<Recette> RecupererTouteLesRecettes()
+        {
+            return _context.Recettes.ToList();
+        }
 
         public void SupprimerRecette(Recette r)
         {
@@ -25,6 +29,7 @@ namespace Projet_Final.Repository
         {
            return _context.Recettes.SingleOrDefault(r => r.ID == id);
         }
+        
 
         public Recette ModifierRecette(Recette recette)
         {
@@ -32,9 +37,14 @@ namespace Projet_Final.Repository
             return recette;
         }
 
-
-
-
-
+        public Recette AjouterRecette(Recette recette)
+        {
+            _context.Recettes.Add(recette);
+            _context.SaveChanges();
+            return recette;
+        }
+      
+        
     }
+
 }

@@ -1,7 +1,25 @@
+using Microsoft.EntityFrameworkCore;
+using Projet_Final.DBManager;
+using Projet_Final.Interfaces;
+using Projet_Final.Repository;
+using Projet_Final.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<Applicationdbcontext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+        )
+);
+builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IRecetteService, RecetteService>();
+builder.Services.AddScoped<IRecetteRepository, RecetteRepository>();
+builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
+builder.Services.AddScoped<IIngredientService, IngredientService>();
+builder.Services.AddScoped<IIngredientRecetteRepository, IngredientRecetteRepository>();
 
 var app = builder.Build();
 

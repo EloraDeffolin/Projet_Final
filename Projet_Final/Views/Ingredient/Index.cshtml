@@ -1,42 +1,31 @@
-﻿
-        <h2>Liste des Ingrédients</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nom</th>
-                    <th>Catégorie</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Lait</td>
-                    <td>Produit Laitier</td>
-                    <td><button class="delete-btn">×</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Poulet</td>
-                    <td>Viande</td>
-                    <td><button class="delete-btn">×</button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Tomate</td>
-                    <td>Légume</td>
-                    <td><button class="delete-btn">×</button></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Riz</td>
-                    <td>Céréale</td>
-                    <td><button class="delete-btn">×</button></td>
-                </tr>
-            </tbody>
-        </table>
+﻿@model List<Ingredient>
 
-        <div class="btn-actions">
-            <a href="ajouter-ingredient.html" class="add-btn">Ajouter un produit</a>
-        </div>
+<h2>Liste des Ingrédients</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nom</th>
+			<th>Catégorie</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Ingredient ingredient in Model)
+		{
+			<tr>
+				<td>@ingredient.Id</td>
+				<td>@ingredient.NomIngredient</td>
+				<td>@ingredient.Categorie</td>
+				<td><a type="button" asp-controller="Ingredient" asp-action="SupprimerIngredient" asp-route-id="@ingredient.Id" class="delete-btn">×</a></td>
+			</tr>
+
+		}
+
+
+	</tbody>
+</table>
+
+<div class="btn-actions">
+	<a asp-controller="Ingredient" asp-action="AjouterIngredient" class="add-btn">Ajouter un produit</a>
+</div>

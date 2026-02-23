@@ -19,11 +19,13 @@ namespace Projet_Final.Repository
 
         }
 
-        public IngredientRecette AjouterIngredientRecette(IngredientRecette ir)
+        public void AjouterIngredientRecette(List<IngredientRecette> lir)
         {
-            _context.RecettesIngredients.Add(ir);
+            foreach (IngredientRecette ir in lir)
+            {
+                _context.RecettesIngredients.Add(ir);
+            }
             _context.SaveChanges();
-            return (ir);
         }
 
         public List<IngredientRecette> RecupererRecetteDetails(int id_recette)

@@ -7,6 +7,6 @@ namespace Projet_Final.Interfaces
         public void SupprimerIngredient(int id);
 
         public Ingredient AjouterIngredient(Ingredient ingredient);
-
+        List<Ingredient> GetAll();
     }
 }

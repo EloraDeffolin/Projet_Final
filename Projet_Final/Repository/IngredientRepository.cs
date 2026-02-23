@@ -1,4 +1,6 @@
-﻿using Projet_Final.DBManager;
+﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Mvc;
+using Projet_Final.DBManager;
 using Projet_Final.Interfaces;
 using Projet_Final.Models;
 
@@ -17,8 +19,8 @@ namespace Projet_Final.Repository
 
         public void SupprimerIngredient(int id)
         {
-
-            _context.Remove(id);
+            Ingredient ingredient = _context.Ingredients.SingleOrDefault(i => i.Id == id);
+            _context.Remove(ingredient);
             _context.SaveChanges();
         }
 
@@ -29,5 +31,8 @@ namespace Projet_Final.Repository
             return ingredient;
         }
 
+       public List<Ingredient> GetAll()
+        {
+            return _context.Ingredients.ToList();      }
     }
 }

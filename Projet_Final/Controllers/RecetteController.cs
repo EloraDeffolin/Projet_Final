@@ -11,21 +11,29 @@ namespace Projet_Final.Controllers
 {
     namespace Projet_Final.Controllers
     {
-        [Route("Recette")]
+        
         public class RecetteController : Controller
         {
             private readonly IRecetteService _recetteservice;
+            private readonly IIngredientService _ingredientService;
 
-            public RecetteController(IRecetteService recetteservice)
+            public RecetteController(IRecetteService recetteservice, IIngredientService ingredientservice)
             {
                 _recetteservice = recetteservice;
-            }
-            public IActionResult Index()
-            {
-                return View();
+                _ingredientService = ingredientservice;
             }
 
-            [HttpPost("SupprimerRecette")]
+
+            public IActionResult AfficherDetailRecette(int id)
+            {
+                RecetteDetailDTO detail = _recetteservice.RecupererRecetteDetail(id);
+
+
+                return View(detail);
+            }
+
+
+            [HttpPost]
             public IActionResult SupprimerRecette(Recette recette)
             {
                 if (!ModelState.IsValid)
@@ -36,33 +44,45 @@ namespace Projet_Final.Controllers
                 return View();
             }
 
-            [HttpGet("AjouterRecette")]
+            [HttpGet]
             public IActionResult AjouterRecette()
             {
-                return View();
+                List<Ingredient> ingredients = _ingredientService.GetAllIngredient();
+                RecetteDetailDTO rdd = new RecetteDetailDTO();
+                rdd.Recette = new Recette();
+                rdd.Ingredients = new List<IngredientsDTO>();
+                foreach(Ingredient i in ingredients) {
+                    IngredientsDTO iDTO = new IngredientsDTO();
+                    iDTO.Ingredient = i;
+                    rdd.Ingredients.Add(iDTO);
+                }
+                return View(rdd);
             }
 
-            [HttpPost("AjouterRecette")]
-            public IActionResult AjouterRecette(Recette recette)
+            [HttpPost]
+            public IActionResult AjouterRecette(RecetteDetailDTO recetteDTO)
             {
+
                 if (!ModelState.IsValid)
                 {
-                    return View("AjouterRecette", recette);
+                    Console.WriteLine("Test");
+                    recetteDTO.Ingredients = new List<IngredientsDTO>();
+                    return View("AjouterRecette", recetteDTO);
                 }
-                _recetteservice.AjouterRecette(recette);
-                return View();
+                _recetteservice.AjouterRecette(recetteDTO);
+                return RedirectToAction("Index","Home");
             }
 
-            [HttpGet("ModifierRecette")]
-            public IActionResult ModifierRecette(int id)
-            {
-                var recette = _recetteservice.RecupererRecetteParId(id);
-                if (recette == null)
-                    return NotFound();
-                return View(recette);
-            }
+            //[HttpGet("ModifierRecette")]
+           // public IActionResult ModifierRecette(int id)
+           // {
+                //var recette = _recetteservice.RecupererRecetteParId(id);
+           //     if (recette == null)
+             //       return NotFound();
+            //    return View(recette);
+           // }
 
-            [HttpPost("ModifierRecette")]
+            [HttpPost]
             public IActionResult ModifierRecette(Recette recette)
             {
                 if (!ModelState.IsValid)

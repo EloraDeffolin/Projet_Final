@@ -26,7 +26,10 @@ namespace Projet_Final.Models
 
         public IngredientRecette(int id_recette, int id_ingredient, double quantite, TypeQuantite typequantite)
         {
-
+            Id_Recette = id_recette;
+            Id_Ingredient = id_ingredient;
+            Quantite = quantite;
+            Typequantite = typequantite;
         }
 
             public override string ToString()
