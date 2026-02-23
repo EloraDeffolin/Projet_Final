@@ -6,13 +6,11 @@ using Projet_Final.Interfaces;
 using Projet_Final.Models;
 using Projet_Final.Service;
 
-
 namespace Projet_Final.Controllers
 {
-    namespace Projet_Final.Controllers
-    {
-        
+    
         public class RecetteController : Controller
+
         {
             private readonly IRecetteService _recetteservice;
             private readonly IIngredientService _ingredientService;
@@ -23,7 +21,6 @@ namespace Projet_Final.Controllers
                 _ingredientService = ingredientservice;
             }
 
-
             public IActionResult AfficherDetailRecette(int id)
             {
                 RecetteDetailDTO detail = _recetteservice.RecupererRecetteDetail(id);
@@ -31,7 +28,6 @@ namespace Projet_Final.Controllers
 
                 return View(detail);
             }
-
 
             [HttpPost]
             public IActionResult SupprimerRecette(Recette recette)
@@ -93,5 +89,5 @@ namespace Projet_Final.Controllers
                 return View();
             }
         }
-    }
+
 }

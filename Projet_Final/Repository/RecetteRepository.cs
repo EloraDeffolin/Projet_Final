@@ -4,7 +4,7 @@ using Projet_Final.Models;
 
 namespace Projet_Final.Repository
 {
-    public class RecetteRepository : IRecetteRepository
+    public class RecetteRepository: IRecetteRepository
     {
 
         private readonly Applicationdbcontext _context;

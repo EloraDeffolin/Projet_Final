@@ -59,9 +59,7 @@ namespace Projet_Final.Service
             // et retourner la recette modifiée
             return recette; // Retourne la recette modifiée
 
-
         }
-
         public RecetteDetailDTO RecupererRecetteDetail(int id)
         {
             List<IngredientRecette> lis = _ingredientRecetteRepository.Recupereringredientrecettebyrecetteid(id);
@@ -77,7 +75,6 @@ namespace Projet_Final.Service
 
             return rdo;
         }
-
         public List<Recette> RecupererTouteLesRecettes()
         {
             return _recetteRepository.RecupererTouteLesRecettes();

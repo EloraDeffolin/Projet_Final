@@ -8,7 +8,6 @@ namespace Projet_Final.Controllers
 {
     public class HomeController : Controller
     {
-
         private readonly IRecetteService _recetteService;
         public HomeController(IRecetteService recetteService)
         {

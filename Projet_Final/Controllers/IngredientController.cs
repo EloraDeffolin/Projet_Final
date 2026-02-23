@@ -4,9 +4,6 @@ using Projet_Final.Models;
 
 namespace Projet_Final.Controllers
 {
-
-
-
     public class IngredientController : Controller
     {
         private readonly IIngredientService _ingredientservice;
@@ -14,7 +11,6 @@ namespace Projet_Final.Controllers
         {
             _ingredientservice = ingredientservice;
         }
-
         public IActionResult Ajouter()
         {
             return View();

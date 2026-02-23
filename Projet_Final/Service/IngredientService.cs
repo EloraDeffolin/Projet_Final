@@ -31,6 +31,5 @@ namespace Projet_Final.Service
         {
             return _ingredientrepository.GetAll();
         }
-
     }
 }

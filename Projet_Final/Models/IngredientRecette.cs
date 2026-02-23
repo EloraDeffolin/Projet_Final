@@ -15,12 +15,8 @@ namespace Projet_Final.Models
         [ForeignKey("Id_Ingredient")]
         public Ingredient? Ingredient { get; set; }  
 
-
         public double Quantite { get; set; }
         public TypeQuantite Typequantite { get; set; }
-
-
-
 
         public IngredientRecette() { }
 

@@ -7,8 +7,8 @@
 @model List<Recette>
 
 <div class="home-hero">
-	<h1>Bienvenue chez Harmonie Gourmande</h1>
-	<p>Découvrez nos recettes gourmandes et partagez les vôtres !</p>
+	<h1 class="title-welcome">Bienvenue chez Harmonie Gourmande !</h1>
+	<p>Découvrez nos recettes gourmandes🍫🍪, mais aussi généreuses et partagez nous les vôtres ! ✨</p>
 </div>
 
 <h2>Nos dernières recettes</h2>
@@ -16,7 +16,7 @@
 @if (Model == null || !Model.Any())
 {
 	<div class="no-recipes">
-		<p>Aucune recette n'a encore été partagée... Soyez le premier ! 🍫🥧</p>
+		<p>Aucune recette n'a encore été partagée ... Soyez le premier ! 🥧</p>
 	</div>
 }
 else
@@ -32,9 +32,9 @@ else
 				<div class="recipe-card">
 					<div class="image"
 						 style="background-image: url('@(string.IsNullOrWhiteSpace(recette.UrlImage)
-															 	 ? "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=600"
-																		 	 : recette.UrlImage)');">
-			</div>
+						? "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=600"
+						: recette.UrlImage)');">
+				</div>
 			<div class="description">
 				<h3>@recette.TitreRecette</h3>
 				<small>Cœur coulant irrésistible – par @recette.AuteurRecette</small>
