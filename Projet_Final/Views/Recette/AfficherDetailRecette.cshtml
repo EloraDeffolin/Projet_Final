@@ -1,37 +1,56 @@
 ﻿@model RecetteDetailDTO
-        <div class="recipe-detail">
-            <div class="recipe-content">
-                <div class="recipe-header">
-                    <div class="recipe-title">
-                        <h1>@Model.Recette.TitreRecette</h1>
-                        <p><strong>Créé par :</strong> @Model.Recette.AuteurRecette</p>
-                    </div>
-                    <div class="actions">
-                        <button class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="delete-btn"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                </div>
-                <div class="recipe-img">
-                    <div class="main-image">
-                        <img src=@Model.Recette.UrlImage
-                             alt="Fondant au chocolat cœur coulant">
-                    </div>
-                    <div class="info">
-                        <h3>Liste des Ingrédients :</h3>
-                        <ul>
-                            @foreach(IngredientsDTO ingredients in Model.Ingredients){
-                            <li>@ingredients.Quantite @ingredients.TypeQuantite de @ingredients.Ingredient.NomIngredient</li>}
-                          
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <h3>Description :</h3>
-            <p>
-                @Model.Recette.Description
-            </p>
-            <h3>Instructions:</h3>
-            <p>
-                @Model.Recette.Instruction
-            </p>
-        </div>
+
+<div class="recipe-title">
+    @if (Model?.Recette != null)
+    {
+        <h1 class="title-recette">@Model.Recette.TitreRecette</h1>
+        <p><strong>Créé par :</strong> @(Model.Recette.AuteurRecette ?? "Anonyme")</p>
+    }
+    else
+    {
+        <h1>Recette non trouvée</h1>
+        <p>L'identifiant fourni n'existe pas ou la recette a été supprimée.</p>
+    }
+</div>
+
+<div class="recipe-img">
+    @if (Model?.Recette != null && !string.IsNullOrWhiteSpace(Model.Recette.UrlImage))
+    {
+        <img src="@Model.Recette.UrlImage" class="main-image" alt="@(Model.Recette.TitreRecette ?? "Recette")" />
+    }
+    else
+    {
+        <div class="placeholder">Aucune image disponible</div>
+    }
+</div>
+
+@if (Model?.Recette != null)
+{
+    <h3>Description :</h3>
+    <p>@(Model.Recette.Description ?? "Aucune description")</p>
+
+    <h3>Instructions :</h3>
+    <p>@(Model.Recette.Instruction ?? "Aucune instruction disponible")</p>
+
+    <h3>Ingrédients :</h3>
+    <p>
+      
+        @if (Model.Ingredients != null && Model.Ingredients.Any())
+        {
+            <ul>
+                @foreach (IngredientsDTO item in Model.Ingredients)
+                {
+                    <li>
+                        @item.Ingredient?.NomIngredient
+                        - @item.Quantite
+                        @item.TypeQuantite
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+        <p>Aucun ingrédient pour cette recette.</p>
+    }
+    </p>
+}

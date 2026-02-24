@@ -31,6 +31,7 @@ namespace Projet_Final.Repository
         public List<IngredientRecette> RecupererRecetteDetails(int id_recette)
         {
             List<IngredientRecette> r = _context.RecettesIngredients
+                .Where(r=>r.RecetteId == id_recette)
                  .Include(r => r.Recette)
                  .Include(r => r.Ingredient)
                  .ToList();
@@ -41,12 +42,12 @@ namespace Projet_Final.Repository
 
         public List<IngredientRecette> Recupereringredientrecettebyrecetteid(int id_recette)
         {
-            return _context.RecettesIngredients.Where(r => r.Id_Recette == id_recette).ToList();
+            return _context.RecettesIngredients.Where(r => r.RecetteId == id_recette).ToList();
         }
 
         public List<IngredientRecette> Recupereringredientrecettebyingredientid(int id_ingredient)
         {
-            return _context.RecettesIngredients.Where(r => r.Id_Ingredient == id_ingredient).ToList();
+            return _context.RecettesIngredients.Where(r => r.IngredientId == id_ingredient).ToList();
         }
 
         public void SupprimerIngredientRecette(IngredientRecette r)
@@ -80,12 +81,12 @@ namespace Projet_Final.Repository
         }
         public List<IngredientRecette> RecupererAllIngredientRecettebyrecetteid(int id_recette)
         {
-            return _context.RecettesIngredients.Where(r => r.Id_Recette == id_recette).ToList();
+            return _context.RecettesIngredients.Where(r => r.RecetteId == id_recette).ToList();
         }
 
         public List<IngredientRecette> RecupererRecette(int id_recette)
         {
-            return _context.RecettesIngredients.Where(r => r.Id_Recette == id_recette).ToList();
+            return _context.RecettesIngredients.Where(r => r.RecetteId == id_recette).ToList();
         }
 
 
@@ -100,14 +101,14 @@ namespace Projet_Final.Repository
 
         Recette IIngredientRecetteRepository.RecupererRecetteId(int id)
         {
-            return _context.RecettesIngredients.Where(r => r.Id_Recette == id).Select(r => r.Recette).FirstOrDefault();
+            return _context.RecettesIngredients.Where(r => r.RecetteId == id).Select(r => r.Recette).FirstOrDefault();
         }
 
 
 
         void IIngredientRecetteRepository.SupprimerRecette(Recette r)
         {
-            foreach (IngredientRecette rec in _context.RecettesIngredients.Where(r => r.Id_Recette ==r.Id))
+            foreach (IngredientRecette rec in _context.RecettesIngredients.Where(r => r.RecetteId ==r.Id))
             {
                 _context.Remove(rec);
             }

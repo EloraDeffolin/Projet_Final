@@ -24,7 +24,7 @@ namespace Projet_Final.Controllers
             public IActionResult AfficherDetailRecette(int id)
             {
                 RecetteDetailDTO detail = _recetteservice.RecupererRecetteDetail(id);
-
+            Console.WriteLine(detail);
 
                 return View(detail);
             }
@@ -59,6 +59,7 @@ namespace Projet_Final.Controllers
             public IActionResult AjouterRecette(RecetteDetailDTO recetteDTO)
             {
 
+            Console.WriteLine("ICI");
                 if (!ModelState.IsValid)
                 {
                     Console.WriteLine("Test");

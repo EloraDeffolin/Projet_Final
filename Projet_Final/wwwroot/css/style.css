@@ -71,11 +71,12 @@ nav {
 }
 
 h1 {
-    color: #fff;
+    color: #9c7c5f;
     margin-bottom: 1.2rem;
+    font-style: italic;
 }
 
-h1.title-welcome {
+h1.title-welcome, {
         color: #9c7c5f;
         font-style: italic;
 }

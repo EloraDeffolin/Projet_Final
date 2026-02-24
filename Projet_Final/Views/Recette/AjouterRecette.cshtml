@@ -1,39 +1,55 @@
 ﻿@model RecetteDetailDTO
 
-<h2>Nos dernières Recettes</h2>
-<div class="recipes-grid">
-	<a asp-controller="Recette" asp-action="AfficherDetailRecette" class="recipe-card-link">
+<div class="container">
+    <h2>Ajouter une Recette</h2>
 
-		<div class="recipe-card">
-			<div class="image"
-				 style="background-image: url('https://images.unsplash.com/photo-1505252929202-c4f39cda4d49?w=600');">
-			</div>
-			<div class="description">
-				<h3>Fondant au chocolat</h3>
-				<small>Cœur coulant irrésistible – par Jane Doe</small>
-			</div>
-		</div>
-	</a>
-	<a asp-controller="Recette" asp-action="AfficherDetailRecette" class="recipe-card-link">
-		<div class="recipe-card">
-			<div class="image"
-				 style="background-image: url('https://images.unsplash.com/photo-1603128516044-61b91661cd14?q=80&w=600');">
-			</div>
-			<div class="description">
-				<h3>Tarte aux pommes</h3>
-				<small>Recette traditionnelle et croustillante - par Jane Doe</small>
-			</div>
-		</div>
-	</a>
-	<a asp-controller="Recette" asp-action="AfficherDetailRecette" class="recipe-card-link">
-		<div class="recipe-card">
-			<div class="image"
-				 style="background-image: url('https://plus.unsplash.com/premium_photo-1713840472081-5ee6c5b63536?q=80&w=600');">
-			</div>
-			<div class="description">
-				<h3>Crème brûlée</h3>
-				<small>Caramel croustillant et vanille intense - par Jane Doe</small>
-			</div>
-		</div>
-	</a>
+    <form asp-controller="Recette" asp-action="AjouterRecette" method="post">
+        <div class="form-group">
+            <label asp-for="Recette.TitreRecette">Titre :</label>
+            <input asp-for="Recette.TitreRecette" type="text" id="titre" placeholder="Ex: Gâteau Merveilleux ..." required>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Recette.Description">Description :</label>
+            <textarea asp-for="Recette.Description" id="description" rows="4" placeholder="Ex: Mélanger les ingrédients ..." required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Recette.UrlImage">URL de l'image :</label>
+            <input asp-for="Recette.UrlImage" type="url" id="url-image" placeholder="https://..." required>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Recette.Instruction">Instructions :</label>
+            <textarea asp-for ="Recette.Instruction" id="instructions" rows="6" placeholder="Ex: ajouter les ingrédients ..." required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Recette.AuteurRecette">Auteur :</label>
+            <input asp-for="Recette.AuteurRecette" type="text" placeholder="Nom de l'auteur, ex: Jane Doe" required>
+        </div>
+
+        <div class="form-group">
+            <label>Ingrédients (nom + quantité) :</label>
+            <div class="ingredient-row">
+                <select asp-for="Ingredients[0].Id">
+                    @foreach (IngredientsDTO ingredientDTO in Model.Ingredients)
+                    {
+                        <option value=@ingredientDTO.Ingredient.Id>@ingredientDTO.Ingredient.NomIngredient</option>
+                    }
+                </select>                
+                <input asp-for="Ingredients[0].Quantite" type="text" class="quantity" placeholder="200g" required>
+                <select asp-for="Ingredients[0].TypeQuantite">
+                    @foreach (TypeQuantite categorie in Enum.GetValues(typeof(TypeQuantite)))
+                    {
+                        <option value=@categorie>@categorie</option>
+                    }
+                </select>
+            </div>
+            
+        </div>
+        <button type="submit">Créer la recette</button>
+    </form>
 </div>
+
+<div asp-validation-summary="All"></div>

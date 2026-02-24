@@ -8,11 +8,13 @@ namespace Projet_Final.Service
     {
         private readonly IIngredientRecetteRepository _ingredientRecetteRepository;
         private readonly IRecetteRepository _recetteRepository;
+        private readonly IIngredientRepository _ingredientRepository;
 
-        public RecetteService(IIngredientRecetteRepository ingredientRecetteRepository, IRecetteRepository recetteRepository)
+        public RecetteService(IIngredientRecetteRepository ingredientRecetteRepository, IRecetteRepository recetteRepository, IIngredientRepository ingredientRepository)
         {
             _ingredientRecetteRepository = ingredientRecetteRepository;
             _recetteRepository = recetteRepository;
+            _ingredientRepository = ingredientRepository;
         }
 
         public Recette AjouterRecette(RecetteDetailDTO recette)
@@ -23,14 +25,17 @@ namespace Projet_Final.Service
 
             for (int i = 0; i < recette.Ingredients.Count; i++)
             {
-
-
-                lir.Add(new IngredientRecette(
+                IngredientRecette ir = new IngredientRecette(
                     recette.Recette.ID,
-                    (int)recette.Ingredients[i].Id,
+                    recette.Ingredients[i].Id ?? 0,
                     recette.Ingredients[i].Quantite,
-                    recette.Ingredients[i].TypeQuantite
-                    ));
+                    recette.Ingredients[i].TypeQuantite);
+
+                Console.WriteLine(ir);
+
+                lir.Add(ir
+
+                    );
             }
 
             _ingredientRecetteRepository.AjouterIngredientRecette(lir);
@@ -47,10 +52,8 @@ namespace Projet_Final.Service
 
         public Recette RecupererRecetteId(int id)
         {
-            // récupérer une recette par son ID
-            //  rechercher la recette dans la base de données en utilisant l'ID
-            // et retourner la recette trouvée
-            return new Recette(); // Retourne la recette trouvée
+
+            return _recetteRepository.RecupererRecetteId(id);
         }
         public Recette ModifierRecette(Recette recette)
         {
@@ -63,13 +66,16 @@ namespace Projet_Final.Service
         public RecetteDetailDTO RecupererRecetteDetail(int id)
         {
             List<IngredientRecette> lis = _ingredientRecetteRepository.Recupereringredientrecettebyrecetteid(id);
+
             RecetteDetailDTO rdo = new RecetteDetailDTO();
-            rdo.Recette = lis[0].Recette; 
-                rdo.Ingredients = new List<IngredientsDTO>();
+            rdo.Recette = RecupererRecetteId(lis[0].RecetteId); 
+            rdo.Ingredients = new List<IngredientsDTO>();
             foreach (IngredientRecette ir in lis)
             {
                 IngredientsDTO io = new IngredientsDTO();
-                io.Ingredient = ir.Ingredient;
+                io.Quantite = (int)ir.Quantite;
+                io.TypeQuantite = ir.Typequantite;
+                io.Ingredient = _ingredientRepository.GetById(ir.IngredientId);
                 rdo.Ingredients.Add(io);
             }
 

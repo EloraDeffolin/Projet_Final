@@ -8,5 +8,6 @@ namespace Projet_Final.Interfaces
 
         public Ingredient AjouterIngredient(Ingredient ingredient);
         List<Ingredient> GetAll();
+        public Ingredient GetById(int id);
     }
 }

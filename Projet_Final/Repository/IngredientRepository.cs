@@ -34,5 +34,10 @@ namespace Projet_Final.Repository
        public List<Ingredient> GetAll()
         {
             return _context.Ingredients.ToList();      }
+
+        public Ingredient GetById(int id)
+        {
+            return _context.Ingredients.SingleOrDefault(i => i.Id == id);
+        }
     }
 }

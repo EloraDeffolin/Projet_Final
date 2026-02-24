@@ -7,12 +7,12 @@ namespace Projet_Final.Models
     {
         public int Id { get; set; }
         
-        public int Id_Recette { get; set; }
-        [ForeignKey("Id_Recette")]
+        public int RecetteId { get; set; }
+        [ForeignKey("RecetteId")]
         public Recette? Recette { get; set; }
 
-        public int Id_Ingredient { get; set; }
-        [ForeignKey("Id_Ingredient")]
+        public int IngredientId { get; set; }
+        [ForeignKey("IngredientId")]
         public Ingredient? Ingredient { get; set; }  
 
         public double Quantite { get; set; }
@@ -22,15 +22,15 @@ namespace Projet_Final.Models
 
         public IngredientRecette(int id_recette, int id_ingredient, double quantite, TypeQuantite typequantite)
         {
-            Id_Recette = id_recette;
-            Id_Ingredient = id_ingredient;
+            RecetteId = id_recette;
+            IngredientId = id_ingredient;
             Quantite = quantite;
             Typequantite = typequantite;
         }
 
             public override string ToString()
         {
-            return $"{Id_Recette} {Id_Ingredient} {Quantite} {Typequantite}";
+            return $"{RecetteId} {IngredientId} {Quantite} {Typequantite} - Recette : {Recette} Ingredient : {Ingredient}";
         }
 
     }
