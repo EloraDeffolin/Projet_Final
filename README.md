@@ -6,10 +6,8 @@
 
 - Le dossier complet à été push sur GitHub.
 
-- La bases de données et le json sont en cours de création.
-
 2. Création du dossier Projet_Final_Maquette ou trouvez :
 
-- Le code complet visual studio code avec le HTML/CSS du projet avec son dossier Images (logo & favicon) et incluant le dossier capture écran du site final.
+- Le code complet visual studio code avec le HTML/CSS du projet en dure avec son dossier Images (logo & favicon) et incluant le dossier capture écran du site final.
 
 - Le dossier complet à été rajouter au dossier Projet_Final.
